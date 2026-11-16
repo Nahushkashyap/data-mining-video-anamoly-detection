@@ -1,0 +1,180 @@
+
+================ 2026-11-21 22:38:14 home audio job ({'tag': 'full', 'limit': None, 'epochs': 40, 'clap': True}) ================
+
+>>> [22:38:14] /usr/bin/python3 -m pip install -q torchlibrosa
+
+>>> [22:38:16] /usr/bin/python3 -m pip install -q --no-deps msclap
+
+>>> [22:38:16] /usr/bin/python3 -u -m vad.audio.train_home_head select --labels /content/fsd/labels --manifest /content/home_out/full/manifest.json
+[select] train: 6374 clips, negatives 3883, positives {'scream': 373, 'glass_break': 350, 'loud_bang': 688, 'shooting': 294, 'explosion': 343, 'alarm': 586}
+[select] val: 998 clips, negatives 617, positives {'scream': 68, 'glass_break': 64, 'loud_bang': 125, 'shooting': 54, 'explosion': 33, 'alarm': 67}
+[select] eval: 3771 clips, negatives 2500, positives {'scream': 287, 'glass_break': 96, 'loud_bang': 399, 'shooting': 134, 'explosion': 65, 'alarm': 382}
+
+>>> [22:38:20] /usr/bin/python3 -u -m vad.audio.train_home_head download --manifest /content/home_out/full/manifest.json --root /content/fsd/clips --token-file /content/.hf_token
+[download] 11143 selected, 11063 to fetch
+[download] 500/11063 (17s, 0 failed)
+[download] 1000/11063 (39s, 0 failed)
+[download] 1500/11063 (58s, 0 failed)
+[download] 2000/11063 (77s, 0 failed)
+[download] 2500/11063 (96s, 0 failed)
+[download] 3000/11063 (121s, 0 failed)
+[download] 3500/11063 (142s, 0 failed)
+[download] 4000/11063 (162s, 0 failed)
+[download] 4500/11063 (183s, 0 failed)
+[download] 5000/11063 (202s, 0 failed)
+[download] 5500/11063 (223s, 0 failed)
+[download] 6000/11063 (243s, 0 failed)
+[download] 6500/11063 (261s, 0 failed)
+[download] 7000/11063 (281s, 0 failed)
+[download] 7500/11063 (431s, 0 failed)
+[download] 8000/11063 (451s, 0 failed)
+[download] 8500/11063 (472s, 0 failed)
+[download] 9000/11063 (496s, 0 failed)
+[download] 9500/11063 (519s, 0 failed)
+[download] 10000/11063 (539s, 0 failed)
+[download] 10500/11063 (560s, 0 failed)
+[download] 11000/11063 (582s, 0 failed)
+[download] 11063/11063 (586s, 0 failed)
+[job] clips on disk: 11143 (6.7G	/content/fsd/clips)
+
+>>> [22:48:09] /usr/bin/python3 -u -m vad.audio.train_home_head extract --manifest /content/home_out/full/manifest.json --root /content/fsd/clips --npz /content/home_out/full/features.npz
+[extract] 11143 clips with audio on disk
+[extract] 1000/11143 clips, 12415 windows, 49s
+[extract] 2000/11143 clips, 19617 windows, 76s
+[extract] 3000/11143 clips, 29907 windows, 114s
+[extract] 4000/11143 clips, 40228 windows, 156s
+[extract] 5000/11143 clips, 48506 windows, 190s
+
+================ 2026-11-21 22:52:47 home audio job ({'tag': 'full', 'limit': None, 'epochs': 40, 'clap': True}) ================
+
+>>> [22:52:47] /usr/bin/python3 -m pip install -q torchlibrosa
+
+>>> [22:52:50] /usr/bin/python3 -m pip install -q --no-deps msclap
+
+>>> [22:52:51] /usr/bin/python3 -u -m vad.audio.train_home_head select --labels /content/fsd/labels --manifest /content/home_out/full/manifest.json
+[select] train: 6374 clips, negatives 3883, positives {'scream': 373, 'glass_break': 350, 'loud_bang': 688, 'shooting': 294, 'explosion': 343, 'alarm': 586}
+[select] val: 998 clips, negatives 617, positives {'scream': 68, 'glass_break': 64, 'loud_bang': 125, 'shooting': 54, 'explosion': 33, 'alarm': 67}
+[select] eval: 3771 clips, negatives 2500, positives {'scream': 287, 'glass_break': 96, 'loud_bang': 399, 'shooting': 134, 'explosion': 65, 'alarm': 382}
+
+>>> [22:52:59] /usr/bin/python3 -u -m vad.audio.train_home_head download --manifest /content/home_out/full/manifest.json --root /content/fsd/clips --token-file /content/.hf_token
+[download] 11143 selected, 0 to fetch
+[job] clips on disk: 11143 (6.7G	/content/fsd/clips)
+
+>>> [22:53:02] /usr/bin/python3 -u -m vad.audio.train_home_head extract --manifest /content/home_out/full/manifest.json --root /content/fsd/clips --npz /content/home_out/full/features.npz
+[extract] 11143 clips with audio on disk
+[extract] 1000/11143 clips, 12415 windows, 46s
+[extract] 2000/11143 clips, 19617 windows, 75s
+[extract] 3000/11143 clips, 29907 windows, 112s
+[extract] 4000/11143 clips, 40228 windows, 150s
+[extract] 5000/11143 clips, 48506 windows, 182s
+[extract] 6000/11143 clips, 60922 windows, 227s
+[extract] 7000/11143 clips, 75463 windows, 277s
+[extract] 8000/11143 clips, 93131 windows, 337s
+[extract] 9000/11143 clips, 106608 windows, 387s
+[extract] 10000/11143 clips, 123175 windows, 446s
+[extract] 11000/11143 clips, 142946 windows, 513s
+[extract] saved 11143 clips / 146831 windows -> /content/home_out/full/features.npz (530s)
+
+>>> [23:01:58] /usr/bin/python3 -u -m vad.audio.train_home_head train --npz /content/home_out/full/features.npz --out /content/home_out/full --epochs 40
+[train] train 6374 / val 998 / eval 3771 clips; train positives {'scream': 373, 'glass_break': 350, 'loud_bang': 688, 'shooting': 294, 'explosion': 343, 'alarm': 586}
+[train] seed 415: best epoch 14, val mAP 0.7496, eval mAP 0.6600, eval mean AUC 0.9358
+[train] seed 416: best epoch 5, val mAP 0.7514, eval mAP 0.6642, eval mean AUC 0.9346
+[train] seed 417: best epoch 9, val mAP 0.7478, eval mAP 0.6583, eval mean AUC 0.9347
+{
+ "head_eval_ap": {
+  "scream": {
+   "mean": 0.6827,
+   "std": 0.0064
+  },
+  "glass_break": {
+   "mean": 0.8511,
+   "std": 0.0149
+  },
+  "loud_bang": {
+   "mean": 0.5415,
+   "std": 0.01
+  },
+  "shooting": {
+   "mean": 0.7457,
+   "std": 0.0084
+  },
+  "explosion": {
+   "mean": 0.4271,
+   "std": 0.0037
+  },
+  "alarm": {
+   "mean": 0.7167,
+   "std": 0.0093
+  },
+  "mAP": {
+   "mean": 0.6608,
+   "std": 0.0025
+  },
+  "mean_auc": {
+   "mean": 0.935,
+   "std": 0.0005
+  }
+ },
+ "head_operating_point(deployed seed)": {
+  "scream": 0.4878,
+  "glass_break": 0.8646,
+  "loud_bang": 0.2907,
+  "shooting": 0.7388,
+  "explosion": 0.5692,
+  "alarm": 0.5366,
+  "false_alarm_rate_on_negatives": 0.0724,
+  "n_negatives": 2500
+ },
+ "baseline": {
+  "zeroshot_class_scores": {
+   "scream": {
+    "n_pos": 287,
+    "ap": 0.599,
+    "roc_auc": 0.9325
+   },
+   "glass_break": {
+    "n_pos": 96,
+    "ap": 0.4195,
+    "roc_auc": 0.9544
+   },
+   "loud_bang": {
+    "n_pos": 399,
+    "ap": 0.2798,
+    "roc_auc": 0.8166
+   },
+   "shooting": {
+    "n_pos": 134,
+    "ap": 0.5225,
+    "roc_auc": 0.9438
+   },
+   "explosion": {
+    "n_pos": 65,
+    "ap": 0.3242,
+    "roc_auc": 0.8805
+   },
+   "alarm": {
+    "n_pos": 382,
+    "ap": 0.3063,
+    "roc_auc": 0.772
+   },
+   "mAP": 0.4085,
+   "mean_auc": 0.8833
+  },
+  "current_trigger_at_0.25": {
+   "scream": 0.3902,
+   "glass_break": 0.3333,
+   "loud_bang": 0.1153,
+   "shooting": 0.4701,
+   "explosion": 0.1846,
+   "alarm": 0.3848,
+   "false_alarm_rate_on_negatives": 0.1116,
+   "n_negatives": 2500
+  }
+ }
+}
+
+>>> [23:02:37] /usr/bin/python3 -u -m vad.audio.train_home_head clap --out /content/home_out/full --root /content/fsd/clips
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[clap] old_zeroshot_trigger+clap_v0: {"scream": 0.3101, "glass_break": 0.3333, "loud_bang": 0.0627, "shooting": 0.4627, "explosion": 0.1692, "alarm": 0.3586, "false_alarm_rate_on_negatives": 0.0748, "n_negatives": 2500, "class_correct_given_alert": {"scream": 0.9888, "glass_break": 1.0, "loud_bang": 0.48, "shooting": 0.9032, "explosion": 0.7273, "alarm": 0.927}}
+[clap] new_home_head+clap_v1: {"scream": 0.453, "glass_break": 0.8646, "loud_bang": 0.2757, "shooting": 0.709, "explosion": 0.5385, "alarm": 0.4948, "false_alarm_rate_on_negatives": 0.0524, "n_negatives": 2500, "class_correct_given_alert": {"scream": 0.9692, "glass_break": 0.9277, "loud_bang": 0.9182, "shooting": 0.8947, "explosion": 0.9714, "alarm": 0.9101}}
+JOB DONE

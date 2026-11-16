@@ -1,0 +1,38 @@
+{
+ "old_zeroshot_trigger+clap_v0": {
+  "scream": 0.3101,
+  "glass_break": 0.3333,
+  "loud_bang": 0.0627,
+  "shooting": 0.4627,
+  "explosion": 0.1692,
+  "alarm": 0.3586,
+  "false_alarm_rate_on_negatives": 0.0748,
+  "n_negatives": 2500,
+  "class_correct_given_alert": {
+   "scream": 0.9888,
+   "glass_break": 1.0,
+   "loud_bang": 0.48,
+   "shooting": 0.9032,
+   "explosion": 0.7273,
+   "alarm": 0.927
+  }
+ },
+ "new_home_head+clap_v1": {
+  "scream": 0.453,
+  "glass_break": 0.8646,
+  "loud_bang": 0.2757,
+  "shooting": 0.709,
+  "explosion": 0.5385,
+  "alarm": 0.4948,
+  "false_alarm_rate_on_negatives": 0.0524,
+  "n_negatives": 2500,
+  "class_correct_given_alert": {
+   "scream": 0.9692,
+   "glass_break": 0.9277,
+   "loud_bang": 0.9182,
+   "shooting": 0.8947,
+   "explosion": 0.9714,
+   "alarm": 0.9101
+  }
+ }
+}

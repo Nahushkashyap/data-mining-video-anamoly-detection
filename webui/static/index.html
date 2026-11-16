@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anomaly Monitor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12h4l3-8 4 16 3-8h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div>
+        <h1>Anomaly Monitor</h1>
+        <p class="sub">X3D-S → Stage 1 MIL gate → Stage 2 CLIP ViT-B/16</p>
+      </div>
+    </div>
+    <div id="status" class="pill pill-wait" role="status"><span class="dot"></span><span id="status-text">Connecting…</span></div>
+  </header>
+
+  <div id="model-error" class="banner banner-error" hidden></div>
+
+  <main>
+    <div class="tabs" role="tablist">
+      <button role="tab" class="tab active" data-tab="upload" aria-selected="true">Upload video</button>
+      <button role="tab" class="tab" data-tab="live" aria-selected="false">Live camera</button>
+    </div>
+
+    <section class="card controls">
+      <div class="control">
+        <label for="tau">Stage 1 threshold τ <span class="val" id="tau-val">–</span></label>
+        <input type="range" id="tau" min="0.02" max="0.98" step="0.01" value="0.35">
+        <p class="hint">Clips whose smoothed score is above τ are sent to CLIP. The trained value comes from the hold-out set. Lower it to make the demo more sensitive. <button class="linkbtn" id="tau-reset">Reset to trained τ</button></p>
+      </div>
+      <div class="control">
+        <label for="sup">CLIP / CLAP suppression <span class="val" id="sup-val">0.60</span></label>
+        <input type="range" id="sup" min="0.3" max="0.95" step="0.01" value="0.6">
+        <p class="hint">A flagged window is vetoed when P(normal) + P(unrelated) is at least this value. Applies to both video (CLIP) and audio (CLAP).</p>
+      </div>
+      <div class="control">
+        <label for="taua">Audio trigger τₐ <span class="val" id="taua-val">0.25</span></label>
+        <input type="range" id="taua" min="0.02" max="0.9" step="0.01" value="0.25">
+        <p class="hint" id="taua-hint">1 s audio windows whose scream / glass-break / loud-bang / gunshot / explosion / alarm score is above τₐ go to CLAP.</p>
+      </div>
+    </section>
+
+    <!-- ============================ UPLOAD ============================ -->
+    <section id="panel-upload" class="panel">
+      <label id="drop" class="drop card" for="file">
+        <input type="file" id="file" accept="video/*" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4m0 0-4 4m4-4 4 4M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <strong>Drop a video here or click to choose</strong>
+        <span class="muted">.mp4 / .mov / .avi. Processing runs locally on this Mac.</span>
+      </label>
+
+      <div id="progress" class="card progress" hidden>
+        <div class="progress-head"><span id="progress-name"></span><span id="progress-msg" class="muted"></span></div>
+        <div class="bar"><div id="progress-fill"></div></div>
+      </div>
+
+      <div id="results" hidden>
+        <div class="tiles" id="tiles"></div>
+        <div class="grid">
+          <div class="card media">
+            <video id="player" controls playsinline></video>
+          </div>
+          <div class="card events">
+            <div class="events-head">
+              <h2>Alerts</h2>
+              <span class="muted small" id="events-count"></span>
+            </div>
+            <div id="fused" class="fused"></div>
+            <h3 class="sub-h">Video (CLIP)</h3>
+            <div id="events"></div>
+            <h3 class="sub-h">Audio (CLAP)</h3>
+            <div id="aevents"></div>
+            <details id="supp-wrap" class="supp">
+              <summary>Suppressed by CLIP <span id="supp-count"></span></summary>
+              <div id="supp"></div>
+            </details>
+          </div>
+        </div>
+        <div class="card chart-card">
+          <div class="chart-head">
+            <h2>Stage 1 anomaly score</h2>
+            <div class="legend small">
+              <span><i class="sw sw-line"></i>smoothed score</span>
+              <span><i class="sw sw-tau"></i>τ</span>
+              <span><i class="sw sw-band"></i>sent to CLIP</span>
+              <span><i class="sw sw-alert"></i>alert</span>
+              <span><i class="sw sw-supp"></i>suppressed</span>
+            </div>
+          </div>
+          <div class="chart-wrap"><canvas id="chart-upload"></canvas><div class="tip" id="tip-upload" hidden></div></div>
+          <p class="muted small">Click the chart to seek. Each point is one 2.6 s clip (3-clip moving average).</p>
+          <details class="table-view"><summary>Show scores as a table</summary><div id="score-table"></div></details>
+        </div>
+        <div class="card chart-card" id="cw-video-card">
+          <div class="chart-head">
+            <h2>Video Stage 2: what CLIP said <span class="muted small" id="cw-video-count"></span></h2>
+            <div class="legend small">
+              <span><i class="sw" style="background:var(--series)"></i>anomaly class</span>
+              <span><i class="sw" style="background:var(--supp)"></i>normal / unrelated</span>
+              <span><i class="sw sw-tau"></i>veto line</span>
+            </div>
+          </div>
+          <p class="muted small" style="margin:0 0 10px">Each window Stage 1 flagged: CLIP's probability for every class (mean of 8 frames), and how sure it was that something is wrong, frame by frame. Click a window for the full per-frame output.</p>
+          <div id="cw-video"></div>
+        </div>
+        <div class="card chart-card" id="audio-card">
+          <div class="chart-head">
+            <h2>Audio Stage 1 score <span class="muted small">(EfficientAT, max over trigger classes per 1 s)</span></h2>
+            <div class="legend small">
+              <span><i class="sw sw-line sw-audio"></i>trigger score</span>
+              <span><i class="sw sw-tau"></i>τₐ</span>
+              <span><i class="sw sw-band"></i>sent to CLAP</span>
+              <span><i class="sw sw-alert"></i>alert</span>
+              <span><i class="sw sw-supp"></i>suppressed</span>
+            </div>
+          </div>
+          <div class="chart-wrap"><canvas id="chart-audio"></canvas><div class="tip" id="tip-audio" hidden></div></div>
+          <p class="muted small" id="audio-note"></p>
+        </div>
+        <div class="card chart-card" id="cw-audio-card">
+          <div class="chart-head">
+            <h2>Audio Stage 2: what CLAP said <span class="muted small" id="cw-audio-count"></span></h2>
+            <div class="legend small">
+              <span><i class="sw" style="background:var(--series-2)"></i>anomaly class</span>
+              <span><i class="sw" style="background:var(--supp)"></i>normal / unrelated</span>
+              <span><i class="sw sw-tau"></i>τₐ</span>
+            </div>
+          </div>
+          <p class="muted small" style="margin:0 0 10px">Each audio window Stage 1 flagged: CLAP's probability for every sound class, and the Stage 1 trigger score for each second of the window. Click a window for the full output.</p>
+          <div id="cw-audio"></div>
+        </div>
+        <div class="card chart-card" id="inspector">
+          <div class="chart-head">
+            <h2>Inspect a time section</h2>
+            <span class="muted small" id="insp-links"></span>
+          </div>
+          <div id="insp-body"><p class="muted small empty">Click a point on either score chart, an alert card, or a window above to see exactly what each model produced for that time section: the embedding, the head's internal layers, and the per-frame CLIP / CLAP output.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ LIVE ============================ -->
+    <section id="panel-live" class="panel" hidden>
+      <div class="card toolbar">
+        <select id="camera" aria-label="Camera"><option value="">Default camera</option></select>
+        <label class="check"><input type="checkbox" id="use-mic" checked> Microphone</label>
+        <button id="live-start" class="btn primary">Start camera</button>
+        <button id="live-stop" class="btn" disabled>Stop</button>
+        <div id="live-state" class="pill pill-idle"><span class="dot"></span><span>Idle</span></div>
+        <span class="muted small" id="live-stats"></span>
+      </div>
+      <div id="live-warn" class="banner banner-warn" hidden></div>
+      <div class="grid">
+        <div class="card media live-media">
+          <video id="cam" autoplay muted playsinline></video>
+          <div id="live-banner" class="live-banner" hidden></div>
+          <div id="cam-empty" class="cam-empty muted">Camera is off</div>
+        </div>
+        <div class="card events">
+          <div class="events-head"><h2>Live alerts</h2><span class="muted small" id="live-count"></span></div>
+          <div id="live-events"><p class="muted small empty">No alerts yet. A clip covers 2.6 s, and each smoothed score lands about 5 s after it is filmed.</p></div>
+        </div>
+      </div>
+      <div class="card chart-card">
+        <div class="chart-head">
+          <h2>Live Stage 1 score <span class="muted small">(last 3 minutes)</span></h2>
+          <div class="legend small">
+            <span><i class="sw sw-line"></i>smoothed score</span>
+            <span><i class="sw sw-tau"></i>τ</span>
+            <span><i class="sw sw-band"></i>sent to CLIP</span>
+          </div>
+        </div>
+        <div class="chart-wrap"><canvas id="chart-live"></canvas><div class="tip" id="tip-live" hidden></div></div>
+        <p class="muted small">Stage 1 was trained on UCF-Crime CCTV footage. Ordinary webcam scenes usually stay below τ, so lower τ above to see CLIP results during a demo.</p>
+      </div>
+      <div class="card chart-card">
+        <div class="chart-head">
+          <h2>Live audio trigger <span class="muted small">(1 s windows, last 3 minutes)</span></h2>
+          <div class="legend small">
+            <span><i class="sw sw-line sw-audio"></i>trigger score</span>
+            <span><i class="sw sw-tau"></i>τₐ</span>
+            <span><i class="sw sw-band"></i>sent to CLAP</span>
+          </div>
+        </div>
+        <div class="chart-wrap"><canvas id="chart-live-audio"></canvas><div class="tip" id="tip-live-audio" hidden></div></div>
+        <p class="muted small" id="live-audio-note">Try clapping sharply, a recorded gunshot or a smoke-alarm test sound played from a phone. Speech and music should stay low or be vetoed by CLAP.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

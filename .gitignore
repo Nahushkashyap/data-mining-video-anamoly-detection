@@ -1,0 +1,43 @@
+# Python / OS / IDE
+__pycache__/
+*.py[cod]
+.DS_Store
+.idea/
+.vscode/
+*.egg-info/
+.ipynb_checkpoints/
+
+# Environments
+venv/
+venv.nosync/
+.venv/
+.env
+
+# Models and weights (fetch with scripts/fetch_models.py, train with the scripts; see README)
+models_cache/
+checkpoints/
+*.pt
+*.pth
+*.pyth
+*.ckpt
+*.safetensors
+*.npz
+
+# Data, media and run outputs
+ucf_videos.nosync/
+data/features/
+data/audio_eval/SESA/
+data/audio_eval/fsd50k/
+web_scraping/dataset/
+webui/data/
+demo_media/*.mp4
+demo_media/*.wav
+backups/
+*.tar.gz
+*.zip
+
+# LaTeX build files
+*.aux
+*.log
+*.out
+*.synctex.gz

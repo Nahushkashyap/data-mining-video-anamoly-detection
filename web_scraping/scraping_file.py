@@ -145,7 +145,9 @@ def _resolve_instagram_tag(item: dict[str, Any]) -> tuple[str, str]:
 
 
 def scrape_instagram() -> list[dict[str, Any]]:
-    token = os.getenv("APIFY_API_TOKEN") or "apify_api_mUdVLHzWIPLoIWgdUJ7861WLSe9sGz46rdTp"
+    token = os.getenv("APIFY_API_TOKEN")
+    if not token:
+        raise SystemExit("Set the APIFY_API_TOKEN environment variable to scrape Instagram.")
     client = ApifyClient(token)
     records: list[dict[str, Any]] = []
     scraped_at = _utc_now_iso()

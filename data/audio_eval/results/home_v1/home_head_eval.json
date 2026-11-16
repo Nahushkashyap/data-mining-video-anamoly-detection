@@ -1,0 +1,334 @@
+{
+ "trained": "2026-11-21 23:02",
+ "classes": [
+  "scream",
+  "glass_break",
+  "loud_bang",
+  "shooting",
+  "explosion",
+  "alarm"
+ ],
+ "n_clips": {
+  "train": 6374,
+  "val": 998,
+  "eval": 3771
+ },
+ "eval_negatives": 2500,
+ "eval_positives": {
+  "scream": 287,
+  "glass_break": 96,
+  "loud_bang": 399,
+  "shooting": 134,
+  "explosion": 65,
+  "alarm": 382
+ },
+ "head_eval_ap_mean_std_3_seeds": {
+  "scream": {
+   "mean": 0.6827,
+   "std": 0.0064
+  },
+  "glass_break": {
+   "mean": 0.8511,
+   "std": 0.0149
+  },
+  "loud_bang": {
+   "mean": 0.5415,
+   "std": 0.01
+  },
+  "shooting": {
+   "mean": 0.7457,
+   "std": 0.0084
+  },
+  "explosion": {
+   "mean": 0.4271,
+   "std": 0.0037
+  },
+  "alarm": {
+   "mean": 0.7167,
+   "std": 0.0093
+  },
+  "mAP": {
+   "mean": 0.6608,
+   "std": 0.0025
+  },
+  "mean_auc": {
+   "mean": 0.935,
+   "std": 0.0005
+  }
+ },
+ "runs": [
+  {
+   "seed": 415,
+   "best_epoch": 14,
+   "val_mAP": 0.7496,
+   "thresholds": {
+    "scream": 0.9891870021820068,
+    "glass_break": 0.95,
+    "loud_bang": 0.9844712018966675,
+    "shooting": 0.85,
+    "explosion": 0.9691474437713623,
+    "alarm": 0.9551947712898254
+   },
+   "eval": {
+    "scream": {
+     "n_pos": 287,
+     "ap": 0.6887,
+     "roc_auc": 0.9328,
+     "precision": 0.8793,
+     "recall": 0.3554,
+     "f1": 0.5062
+    },
+    "glass_break": {
+     "n_pos": 96,
+     "ap": 0.8459,
+     "roc_auc": 0.9904,
+     "precision": 0.8021,
+     "recall": 0.8021,
+     "f1": 0.8021
+    },
+    "loud_bang": {
+     "n_pos": 399,
+     "ap": 0.5429,
+     "roc_auc": 0.8742,
+     "precision": 0.7607,
+     "recall": 0.2231,
+     "f1": 0.345
+    },
+    "shooting": {
+     "n_pos": 134,
+     "ap": 0.7493,
+     "roc_auc": 0.9676,
+     "precision": 0.6531,
+     "recall": 0.7164,
+     "f1": 0.6833
+    },
+    "explosion": {
+     "n_pos": 65,
+     "ap": 0.426,
+     "roc_auc": 0.918,
+     "precision": 0.5909,
+     "recall": 0.4,
+     "f1": 0.4771
+    },
+    "alarm": {
+     "n_pos": 382,
+     "ap": 0.7069,
+     "roc_auc": 0.9321,
+     "precision": 0.7977,
+     "recall": 0.5366,
+     "f1": 0.6416
+    },
+    "mAP": 0.66,
+    "mean_auc": 0.9358
+   },
+   "eval_operating_point": {
+    "scream": 0.4007,
+    "glass_break": 0.8333,
+    "loud_bang": 0.3108,
+    "shooting": 0.7463,
+    "explosion": 0.5231,
+    "alarm": 0.5497,
+    "false_alarm_rate_on_negatives": 0.0596,
+    "n_negatives": 2500
+   }
+  },
+  {
+   "seed": 416,
+   "best_epoch": 5,
+   "val_mAP": 0.7514,
+   "thresholds": {
+    "scream": 0.9456762671470642,
+    "glass_break": 0.7999999999999999,
+    "loud_bang": 0.9528441429138184,
+    "shooting": 0.9095922112464905,
+    "explosion": 0.9786152839660645,
+    "alarm": 0.9507707953453064
+   },
+   "eval": {
+    "scream": {
+     "n_pos": 287,
+     "ap": 0.6738,
+     "roc_auc": 0.9216,
+     "precision": 0.8129,
+     "recall": 0.439,
+     "f1": 0.5701
+    },
+    "glass_break": {
+     "n_pos": 96,
+     "ap": 0.8714,
+     "roc_auc": 0.9917,
+     "precision": 0.6587,
+     "recall": 0.8646,
+     "f1": 0.7477
+    },
+    "loud_bang": {
+     "n_pos": 399,
+     "ap": 0.5531,
+     "roc_auc": 0.8745,
+     "precision": 0.7767,
+     "recall": 0.2005,
+     "f1": 0.3187
+    },
+    "shooting": {
+     "n_pos": 134,
+     "ap": 0.7342,
+     "roc_auc": 0.9645,
+     "precision": 0.6259,
+     "recall": 0.6866,
+     "f1": 0.6548
+    },
+    "explosion": {
+     "n_pos": 65,
+     "ap": 0.4232,
+     "roc_auc": 0.9185,
+     "precision": 0.551,
+     "recall": 0.4154,
+     "f1": 0.4737
+    },
+    "alarm": {
+     "n_pos": 382,
+     "ap": 0.7292,
+     "roc_auc": 0.9368,
+     "precision": 0.8,
+     "recall": 0.5236,
+     "f1": 0.6329
+    },
+    "mAP": 0.6642,
+    "mean_auc": 0.9346
+   },
+   "eval_operating_point": {
+    "scream": 0.4878,
+    "glass_break": 0.8646,
+    "loud_bang": 0.2907,
+    "shooting": 0.7388,
+    "explosion": 0.5692,
+    "alarm": 0.5366,
+    "false_alarm_rate_on_negatives": 0.0724,
+    "n_negatives": 2500
+   }
+  },
+  {
+   "seed": 417,
+   "best_epoch": 9,
+   "val_mAP": 0.7478,
+   "thresholds": {
+    "scream": 0.9775237441062927,
+    "glass_break": 0.9730850458145142,
+    "loud_bang": 0.9770494699478149,
+    "shooting": 0.9,
+    "explosion": 0.9947051405906677,
+    "alarm": 0.9655508995056152
+   },
+   "eval": {
+    "scream": {
+     "n_pos": 287,
+     "ap": 0.6855,
+     "roc_auc": 0.9267,
+     "precision": 0.8582,
+     "recall": 0.4216,
+     "f1": 0.5654
+    },
+    "glass_break": {
+     "n_pos": 96,
+     "ap": 0.8359,
+     "roc_auc": 0.9887,
+     "precision": 0.8816,
+     "recall": 0.6979,
+     "f1": 0.7791
+    },
+    "loud_bang": {
+     "n_pos": 399,
+     "ap": 0.5286,
+     "roc_auc": 0.8732,
+     "precision": 0.7798,
+     "recall": 0.213,
+     "f1": 0.3346
+    },
+    "shooting": {
+     "n_pos": 134,
+     "ap": 0.7537,
+     "roc_auc": 0.9647,
+     "precision": 0.6387,
+     "recall": 0.7388,
+     "f1": 0.6851
+    },
+    "explosion": {
+     "n_pos": 65,
+     "ap": 0.4321,
+     "roc_auc": 0.9178,
+     "precision": 0.7083,
+     "recall": 0.2615,
+     "f1": 0.382
+    },
+    "alarm": {
+     "n_pos": 382,
+     "ap": 0.714,
+     "roc_auc": 0.9372,
+     "precision": 0.7854,
+     "recall": 0.5366,
+     "f1": 0.6376
+    },
+    "mAP": 0.6583,
+    "mean_auc": 0.9347
+   },
+   "eval_operating_point": {
+    "scream": 0.4704,
+    "glass_break": 0.75,
+    "loud_bang": 0.2982,
+    "shooting": 0.7612,
+    "explosion": 0.4308,
+    "alarm": 0.5497,
+    "false_alarm_rate_on_negatives": 0.0536,
+    "n_negatives": 2500
+   }
+  }
+ ],
+ "deployed_seed": 416,
+ "baseline": {
+  "zeroshot_class_scores": {
+   "scream": {
+    "n_pos": 287,
+    "ap": 0.599,
+    "roc_auc": 0.9325
+   },
+   "glass_break": {
+    "n_pos": 96,
+    "ap": 0.4195,
+    "roc_auc": 0.9544
+   },
+   "loud_bang": {
+    "n_pos": 399,
+    "ap": 0.2798,
+    "roc_auc": 0.8166
+   },
+   "shooting": {
+    "n_pos": 134,
+    "ap": 0.5225,
+    "roc_auc": 0.9438
+   },
+   "explosion": {
+    "n_pos": 65,
+    "ap": 0.3242,
+    "roc_auc": 0.8805
+   },
+   "alarm": {
+    "n_pos": 382,
+    "ap": 0.3063,
+    "roc_auc": 0.772
+   },
+   "mAP": 0.4085,
+   "mean_auc": 0.8833
+  },
+  "current_trigger_at_0.25": {
+   "scream": 0.3902,
+   "glass_break": 0.3333,
+   "loud_bang": 0.1153,
+   "shooting": 0.4701,
+   "explosion": 0.1846,
+   "alarm": 0.3848,
+   "false_alarm_rate_on_negatives": 0.1116,
+   "n_negatives": 2500
+  },
+  "note": "zeroshot_class_scores = AudioSet probabilities of the matching labels (loud_bang uses Bang/Slam/Thump/Smash/Knock, which the deployed zero-shot trigger does not even listen for); current_trigger_at_0.25 = the deployed zero-shot trigger (5 groups, tau_a 0.25)."
+ }
+}

@@ -1,0 +1,400 @@
+{
+  "rule": "lowest tau_a with train casual FAR <= 0.05",
+  "chosen_tau_a": 0.24,
+  "train_at_chosen": {
+    "tau_a": 0.24,
+    "threat_recall": 0.4147,
+    "threat_correct_class": 0.4,
+    "casual_far": 0.05
+  },
+  "test_at_chosen": {
+    "tau_a": 0.24,
+    "threat_recall": 0.4605,
+    "threat_correct_class": 0.4211,
+    "casual_far": 0.0
+  },
+  "test_at_default_0.25": {
+    "tau_a": 0.25,
+    "threat_recall": 0.4605,
+    "threat_correct_class": 0.4211,
+    "casual_far": 0.0
+  },
+  "table": {
+    "train": [
+      {
+        "tau_a": 0.02,
+        "threat_recall": 0.8794,
+        "threat_correct_class": 0.8265,
+        "casual_far": 0.4929
+      },
+      {
+        "tau_a": 0.04,
+        "threat_recall": 0.8147,
+        "threat_correct_class": 0.7676,
+        "casual_far": 0.3143
+      },
+      {
+        "tau_a": 0.06,
+        "threat_recall": 0.7676,
+        "threat_correct_class": 0.7294,
+        "casual_far": 0.2786
+      },
+      {
+        "tau_a": 0.08,
+        "threat_recall": 0.7059,
+        "threat_correct_class": 0.6765,
+        "casual_far": 0.2357
+      },
+      {
+        "tau_a": 0.1,
+        "threat_recall": 0.6618,
+        "threat_correct_class": 0.6382,
+        "casual_far": 0.2071
+      },
+      {
+        "tau_a": 0.12,
+        "threat_recall": 0.6147,
+        "threat_correct_class": 0.6,
+        "casual_far": 0.1786
+      },
+      {
+        "tau_a": 0.14,
+        "threat_recall": 0.5853,
+        "threat_correct_class": 0.5735,
+        "casual_far": 0.1571
+      },
+      {
+        "tau_a": 0.16,
+        "threat_recall": 0.5529,
+        "threat_correct_class": 0.5412,
+        "casual_far": 0.1357
+      },
+      {
+        "tau_a": 0.18,
+        "threat_recall": 0.5029,
+        "threat_correct_class": 0.4912,
+        "casual_far": 0.1214
+      },
+      {
+        "tau_a": 0.2,
+        "threat_recall": 0.4706,
+        "threat_correct_class": 0.4559,
+        "casual_far": 0.1
+      },
+      {
+        "tau_a": 0.22,
+        "threat_recall": 0.4382,
+        "threat_correct_class": 0.4235,
+        "casual_far": 0.0643
+      },
+      {
+        "tau_a": 0.24,
+        "threat_recall": 0.4147,
+        "threat_correct_class": 0.4,
+        "casual_far": 0.05
+      },
+      {
+        "tau_a": 0.25,
+        "threat_recall": 0.4088,
+        "threat_correct_class": 0.3941,
+        "casual_far": 0.05
+      },
+      {
+        "tau_a": 0.26,
+        "threat_recall": 0.4059,
+        "threat_correct_class": 0.3912,
+        "casual_far": 0.05
+      },
+      {
+        "tau_a": 0.28,
+        "threat_recall": 0.3971,
+        "threat_correct_class": 0.3853,
+        "casual_far": 0.05
+      },
+      {
+        "tau_a": 0.3,
+        "threat_recall": 0.3794,
+        "threat_correct_class": 0.3706,
+        "casual_far": 0.0429
+      },
+      {
+        "tau_a": 0.32,
+        "threat_recall": 0.3588,
+        "threat_correct_class": 0.35,
+        "casual_far": 0.0429
+      },
+      {
+        "tau_a": 0.34,
+        "threat_recall": 0.3412,
+        "threat_correct_class": 0.3324,
+        "casual_far": 0.0429
+      },
+      {
+        "tau_a": 0.36,
+        "threat_recall": 0.3176,
+        "threat_correct_class": 0.3088,
+        "casual_far": 0.0429
+      },
+      {
+        "tau_a": 0.38,
+        "threat_recall": 0.2941,
+        "threat_correct_class": 0.2853,
+        "casual_far": 0.0357
+      },
+      {
+        "tau_a": 0.4,
+        "threat_recall": 0.2794,
+        "threat_correct_class": 0.2706,
+        "casual_far": 0.0214
+      },
+      {
+        "tau_a": 0.42,
+        "threat_recall": 0.2676,
+        "threat_correct_class": 0.2588,
+        "casual_far": 0.0214
+      },
+      {
+        "tau_a": 0.44,
+        "threat_recall": 0.2588,
+        "threat_correct_class": 0.25,
+        "casual_far": 0.0071
+      },
+      {
+        "tau_a": 0.46,
+        "threat_recall": 0.2441,
+        "threat_correct_class": 0.2353,
+        "casual_far": 0.0071
+      },
+      {
+        "tau_a": 0.48,
+        "threat_recall": 0.2353,
+        "threat_correct_class": 0.2265,
+        "casual_far": 0.0071
+      },
+      {
+        "tau_a": 0.5,
+        "threat_recall": 0.2265,
+        "threat_correct_class": 0.2176,
+        "casual_far": 0.0071
+      },
+      {
+        "tau_a": 0.52,
+        "threat_recall": 0.2088,
+        "threat_correct_class": 0.2029,
+        "casual_far": 0.0071
+      },
+      {
+        "tau_a": 0.54,
+        "threat_recall": 0.2059,
+        "threat_correct_class": 0.2,
+        "casual_far": 0.0
+      },
+      {
+        "tau_a": 0.56,
+        "threat_recall": 0.1912,
+        "threat_correct_class": 0.1853,
+        "casual_far": 0.0
+      },
+      {
+        "tau_a": 0.58,
+        "threat_recall": 0.1882,
+        "threat_correct_class": 0.1824,
+        "casual_far": 0.0
+      },
+      {
+        "tau_a": 0.6,
+        "threat_recall": 0.1706,
+        "threat_correct_class": 0.1676,
+        "casual_far": 0.0
+      }
+    ],
+    "test": [
+      {
+        "tau_a": 0.02,
+        "threat_recall": 0.8684,
+        "threat_correct_class": 0.8026,
+        "casual_far": 0.3793
+      },
+      {
+        "tau_a": 0.04,
+        "threat_recall": 0.8421,
+        "threat_correct_class": 0.7763,
+        "casual_far": 0.2759
+      },
+      {
+        "tau_a": 0.06,
+        "threat_recall": 0.7632,
+        "threat_correct_class": 0.6974,
+        "casual_far": 0.1724
+      },
+      {
+        "tau_a": 0.08,
+        "threat_recall": 0.7237,
+        "threat_correct_class": 0.6579,
+        "casual_far": 0.1724
+      },
+      {
+        "tau_a": 0.1,
+        "threat_recall": 0.6842,
+        "threat_correct_class": 0.6184,
+        "casual_far": 0.1034
+      },
+      {
+        "tau_a": 0.12,
+        "threat_recall": 0.6579,
+        "threat_correct_class": 0.6053,
+        "casual_far": 0.1034
+      },
+      {
+        "tau_a": 0.14,
+        "threat_recall": 0.6184,
+        "threat_correct_class": 0.5658,
+        "casual_far": 0.0345
+      },
+      {
+        "tau_a": 0.16,
+        "threat_recall": 0.5395,
+        "threat_correct_class": 0.5,
+        "casual_far": 0.0
+      },
+      {
+        "tau_a": 0.18,
+        "threat_recall": 0.5,
+        "threat_correct_class": 0.4605,
+        "casual_far": 0.0
+      },
+      {
+        "tau_a": 0.2,
+        "threat_recall": 0.4868,
+        "threat_correct_class": 0.4474,
+        "casual_far": 0.0
+      },
+      {
+        "tau_a": 0.22,
+        "threat_recall": 0.4737,
+        "threat_correct_class": 0.4342,
+        "casual_far": 0.0
+      },
+      {
+        "tau_a": 0.24,
+        "threat_recall": 0.4605,
+        "threat_correct_class": 0.4211,
+        "casual_far": 0.0
+      },
+      {
+        "tau_a": 0.25,
+        "threat_recall": 0.4605,
+        "threat_correct_class": 0.4211,
+        "casual_far": 0.0
+      },
+      {
+        "tau_a": 0.26,
+        "threat_recall": 0.4605,
+        "threat_correct_class": 0.4211,
+        "casual_far": 0.0
+      },
+      {
+        "tau_a": 0.28,
+        "threat_recall": 0.4342,
+        "threat_correct_class": 0.3947,
+        "casual_far": 0.0
+      },
+      {
+        "tau_a": 0.3,
+        "threat_recall": 0.3947,
+        "threat_correct_class": 0.3684,
+        "casual_far": 0.0
+      },
+      {
+        "tau_a": 0.32,
+        "threat_recall": 0.3421,
+        "threat_correct_class": 0.3158,
+        "casual_far": 0.0
+      },
+      {
+        "tau_a": 0.34,
+        "threat_recall": 0.3026,
+        "threat_correct_class": 0.2895,
+        "casual_far": 0.0
+      },
+      {
+        "tau_a": 0.36,
+        "threat_recall": 0.2895,
+        "threat_correct_class": 0.2763,
+        "casual_far": 0.0
+      },
+      {
+        "tau_a": 0.38,
+        "threat_recall": 0.2763,
+        "threat_correct_class": 0.2632,
+        "casual_far": 0.0
+      },
+      {
+        "tau_a": 0.4,
+        "threat_recall": 0.2763,
+        "threat_correct_class": 0.2632,
+        "casual_far": 0.0
+      },
+      {
+        "tau_a": 0.42,
+        "threat_recall": 0.2632,
+        "threat_correct_class": 0.25,
+        "casual_far": 0.0
+      },
+      {
+        "tau_a": 0.44,
+        "threat_recall": 0.25,
+        "threat_correct_class": 0.2368,
+        "casual_far": 0.0
+      },
+      {
+        "tau_a": 0.46,
+        "threat_recall": 0.25,
+        "threat_correct_class": 0.2368,
+        "casual_far": 0.0
+      },
+      {
+        "tau_a": 0.48,
+        "threat_recall": 0.25,
+        "threat_correct_class": 0.2368,
+        "casual_far": 0.0
+      },
+      {
+        "tau_a": 0.5,
+        "threat_recall": 0.2237,
+        "threat_correct_class": 0.2105,
+        "casual_far": 0.0
+      },
+      {
+        "tau_a": 0.52,
+        "threat_recall": 0.2237,
+        "threat_correct_class": 0.2105,
+        "casual_far": 0.0
+      },
+      {
+        "tau_a": 0.54,
+        "threat_recall": 0.2105,
+        "threat_correct_class": 0.1974,
+        "casual_far": 0.0
+      },
+      {
+        "tau_a": 0.56,
+        "threat_recall": 0.2105,
+        "threat_correct_class": 0.1974,
+        "casual_far": 0.0
+      },
+      {
+        "tau_a": 0.58,
+        "threat_recall": 0.1711,
+        "threat_correct_class": 0.1711,
+        "casual_far": 0.0
+      },
+      {
+        "tau_a": 0.6,
+        "threat_recall": 0.1711,
+        "threat_correct_class": 0.1711,
+        "casual_far": 0.0
+      }
+    ]
+  }
+}
